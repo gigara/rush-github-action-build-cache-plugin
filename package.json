@@ -1,0 +1,32 @@
+{
+  "name": "@gigara/rush-github-action-build-cache-plugin",
+  "version": "1.0.2",
+  "description": "Rush build-cache plugin for Github Actions ",
+  "keywords": [
+    "rush",
+    "rushjs",
+    "rush Plugin",
+    "github cache"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gigara/rush-github-action-build-cache-plugin"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chamupathi Gigara Hettige",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@actions/cache": "^3.1.4",
+    "@actions/core": "^1.10.0",
+    "@microsoft/rush-lib": "^5.93.1",
+    "verdaccio": "^6.0.0-6-next.63"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  }
+}
