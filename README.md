@@ -13,7 +13,7 @@ Please refer to the [official documentation](https://rushjs.io/pages/maintainer/
 {
   ---
   "dependencies": {
-    "@gigara/rush-github-action-build-cache-plugin": "^1.0.1"
+    "@gigara/rush-github-action-build-cache-plugin": "^1.0.3"
   }
   ---
 }
@@ -41,10 +41,8 @@ You need to set `ACTIONS_CACHE_URL` and `ACTIONS_RUNTIME_TOKEN` envs in GitHub a
 
 You can use the [rush-cache](https://github.com/marketplace/actions/rush-cache) Github action to set envs.
 ```
-- name: Restore cache
-  uses: gigara/rush-cache@v1
-  with:
-    set-env: true
+- name: Set cache env
+  uses: gigara/rush-cache@v2
 ```
 
 After you have set up the plugin correctly, `rush build` command in GitHub actions will automatically save and restore the cache.

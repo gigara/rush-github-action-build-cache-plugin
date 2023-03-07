@@ -1,6 +1,6 @@
 {
   "name": "@gigara/rush-github-action-build-cache-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Rush build-cache plugin for Github Actions ",
   "keywords": [
     "rush",
