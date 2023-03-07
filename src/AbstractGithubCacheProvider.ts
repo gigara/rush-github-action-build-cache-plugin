@@ -28,7 +28,7 @@ export abstract class AbstractGithubCacheProvider {
     }
     
     public get isCacheWriteAllowed(): boolean {
-        return true;
+        return false;
     }
 
     tryGetCacheEntryBufferByIdAsync(terminal: ITerminal, cacheId: string): Promise<Buffer | undefined> {

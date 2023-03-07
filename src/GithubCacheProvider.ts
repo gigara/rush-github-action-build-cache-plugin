@@ -24,6 +24,9 @@ import { GithubActionClient } from "./action/GithubActionClient";
 
 const isCI = process.env.CI === 'true';
 export class GithubCacheProvider extends AbstractGithubCacheProvider implements ICloudBuildCacheProvider {
+    public get isCacheWriteAllowed(): boolean {
+        return isCI;
+    }
     tryGetCacheEntryBufferByIdAsync(terminal: ITerminal, cacheId: string): Promise<Buffer | undefined> {
         return isCI ? GithubActionClient.getCache(cacheId, this.rushConfiguration.commonTempFolder) : Promise.resolve(undefined);
     }
