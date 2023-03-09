@@ -13,7 +13,7 @@ Please refer to the [official documentation](https://rushjs.io/pages/maintainer/
 {
   ---
   "dependencies": {
-    "@gigara/rush-github-action-build-cache-plugin": "^1.0.3"
+    "@gigara/rush-github-action-build-cache-plugin": "^1.0.4"
   }
   ---
 }
@@ -21,7 +21,7 @@ Please refer to the [official documentation](https://rushjs.io/pages/maintainer/
 
 2. Run the `rush update-autoinstaller --name rush-plugins` command to update the autoinstaller with plugin dependency.
 
-3. Navigate to the `common/config/rush/` directory and open the `rush-plugins.json` file. Add the plugin to the plugins array.
+3. In `common/config/rush/rush-plugins.json`, Add the plugin to the plugins array.
 
 ```
 {
@@ -35,6 +35,11 @@ Please refer to the [official documentation](https://rushjs.io/pages/maintainer/
 }
 ```
 6. Run the `rush update` command to install the plugin and update the Rush configuration.
+
+7. Set `cacheProvider` in `common/config/rush/build-cache.json`.
+```
+"cacheProvider": "github-action-build-cache",
+```
 
 ## Usage
 You need to set `ACTIONS_CACHE_URL` and `ACTIONS_RUNTIME_TOKEN` envs in GitHub actions. Otherwise the plugin will fail to upload/download the cache.
