@@ -22,7 +22,7 @@ import { error, info } from "@actions/core";
 
 export async function downloadCache(cacheFile: string, cacheId: string) {
     try {
-        const rushCacheHit = await restoreCache([cacheFile], cacheId);
+        const rushCacheHit = await restoreCache([cacheFile], cacheId, [cacheId]);
         if (rushCacheHit) {
             info(`Rush build cache downloaded with key: ${cacheId}`);
         }
