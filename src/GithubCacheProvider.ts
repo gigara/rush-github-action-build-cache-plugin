@@ -27,10 +27,10 @@ export class GithubCacheProvider extends AbstractGithubCacheProvider implements 
     public get isCacheWriteAllowed(): boolean {
         return isCI;
     }
-    tryGetCacheEntryBufferByIdAsync(terminal: ITerminal, cacheId: string): Promise<Buffer | undefined> {
-        return isCI ? GithubActionClient.getCache(cacheId, this.rushConfiguration.commonTempFolder) : Promise.resolve(undefined);
+    async tryGetCacheEntryBufferByIdAsync(terminal: ITerminal, cacheId: string): Promise<Buffer | undefined> {
+        return isCI ? await GithubActionClient.getCache(cacheId, this.rushConfiguration.commonTempFolder) : Promise.resolve(undefined);
     }
-    trySetCacheEntryBufferAsync(terminal: ITerminal, cacheId: string, entryBuffer: Buffer): Promise<boolean> {
-        return isCI ? GithubActionClient.saveCache(cacheId, this.rushConfiguration.commonTempFolder) : Promise.resolve(false);
+    async trySetCacheEntryBufferAsync(terminal: ITerminal, cacheId: string, entryBuffer: Buffer): Promise<boolean> {
+        return isCI ? await GithubActionClient.saveCache(cacheId, this.rushConfiguration.commonTempFolder) : Promise.resolve(false);
     }
 }

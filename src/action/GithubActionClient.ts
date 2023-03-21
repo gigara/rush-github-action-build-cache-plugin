@@ -27,13 +27,13 @@ const fs = require('fs');
 const BUILD_CACHE_FOLDER = "build-cache";
 
 export class GithubActionClient extends CacheProvider {
-  static getCache(cacheId: string, cacheRoot: string): Promise<Buffer> {
+  static async getCache(cacheId: string, cacheRoot: string): Promise<Buffer> {
     const ghCacheId = `${process.platform}-${cacheId}`;
     const cacheFile = join(cacheRoot, BUILD_CACHE_FOLDER, cacheId);
+    await downloadCache(cacheFile, ghCacheId);
+    const fileExists = fs.existsSync(cacheFile);
 
     return new Promise(async function (resolve, reject) {
-      await downloadCache(cacheFile, ghCacheId);
-      const fileExists = fs.existsSync(cacheFile);
       if (fileExists) {
         return resolve(fs.readFileSync(cacheFile));
       } else {
@@ -43,23 +43,22 @@ export class GithubActionClient extends CacheProvider {
     });
   }
 
-  static saveCache(cacheId: string, cacheRoot: string): Promise<boolean> {
+  static async saveCache(cacheId: string, cacheRoot: string): Promise<boolean> {
     const ghCacheId = `${process.platform}-${cacheId}`;
     const cacheFile = join(cacheRoot, BUILD_CACHE_FOLDER, cacheId);
     const fileExists = fs.existsSync(cacheFile);
-    return new Promise(async function (resolve, reject) {
-      if (!fileExists) {
-        error(`Rush build cache not exists with key: ${cacheId}.`);
-        reject();
-      }
-      try {
-        const id = await uploadCache(cacheFile, ghCacheId);
-        info(`Rush build cache uploaded with key: ${ghCacheId}`);
-        resolve(true);
-      } catch (e) {
-        error(`Rush build cache upload failed with key: ${ghCacheId}. Error: ${e}`);
-        reject();
-      }
-    });
+    if (!fileExists) {
+      error(`Rush build cache not exists with key: ${cacheId}.`);
+      return Promise.reject(new Error(`Rush build cache file not exists with key: ${cacheId}.`));
+    }
+
+    try {
+      const id = await uploadCache(cacheFile, ghCacheId);
+      return Promise.resolve(true);
+
+    } catch (e) {
+      error(`Rush build cache upload failed with key: ${ghCacheId}. Error: ${e}`);
+      return Promise.reject(new Error(`Rush build cache upload failed with key: ${ghCacheId}. Error: ${e}`));
+    }
   }
 }

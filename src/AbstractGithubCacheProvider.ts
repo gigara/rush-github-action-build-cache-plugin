@@ -31,19 +31,19 @@ export abstract class AbstractGithubCacheProvider {
         return false;
     }
 
-    tryGetCacheEntryBufferByIdAsync(terminal: ITerminal, cacheId: string): Promise<Buffer | undefined> {
+    async tryGetCacheEntryBufferByIdAsync(terminal: ITerminal, cacheId: string): Promise<Buffer | undefined> {
         throw new Error("Method not implemented.");
     }
-    trySetCacheEntryBufferAsync(terminal: ITerminal, cacheId: string, entryBuffer: Buffer): Promise<boolean> {
+    async trySetCacheEntryBufferAsync(terminal: ITerminal, cacheId: string, entryBuffer: Buffer): Promise<boolean> {
         throw new Error("Method not implemented.");
     }
-    updateCachedCredentialAsync(terminal: ITerminal, credential: string): Promise<void> {
+    async updateCachedCredentialAsync(terminal: ITerminal, credential: string): Promise<void> {
         throw new Error("Method not implemented.");
     }
-    updateCachedCredentialInteractiveAsync(terminal: ITerminal): Promise<void> {
+    async updateCachedCredentialInteractiveAsync(terminal: ITerminal): Promise<void> {
         throw new Error("Method not implemented.");
     }
-    deleteCachedCredentialsAsync(terminal: ITerminal): Promise<void> {
+    async deleteCachedCredentialsAsync(terminal: ITerminal): Promise<void> {
         throw new Error("Method not implemented.");
     }
 

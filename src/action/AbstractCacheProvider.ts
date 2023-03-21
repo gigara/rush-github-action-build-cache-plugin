@@ -18,10 +18,10 @@
  */
 
 export abstract class CacheProvider {
-    static getCache(cacheId: string, cacheRoot: string): Promise<Buffer | undefined> {
+    static async getCache(cacheId: string, cacheRoot: string): Promise<Buffer | undefined> {
         throw new Error("Method not implemented.");
     }
-    static saveCache(cacheId: string, cacheRoot: string): Promise<boolean> {
+    static async saveCache(cacheId: string, cacheRoot: string): Promise<boolean> {
         throw new Error("Method not implemented.");
     }
 }

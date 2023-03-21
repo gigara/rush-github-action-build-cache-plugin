@@ -18,7 +18,14 @@
  */
 
 import { saveCache } from "@actions/cache";
+import { info, error } from "@actions/core";
 
 export async function uploadCache(cacheFile: string, cacheId: string): Promise<number> {
-    return await saveCache([cacheFile], cacheId);
+    try {
+        const id = await saveCache([cacheFile], cacheId);
+        info(`Rush build cache uploaded with key: ${cacheId}`);
+        return id;
+      } catch (e) {
+        error(`Rush build cache upload failed with key: ${cacheId}. Error: ${e}`);
+      }
 }
