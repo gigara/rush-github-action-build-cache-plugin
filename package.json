@@ -1,6 +1,6 @@
 {
   "name": "@gigara/rush-github-action-build-cache-plugin",
-  "version": "1.0.8",
+  "version": "1.1.1",
   "description": "Rush build-cache plugin for Github Actions ",
   "keywords": [
     "rush",
@@ -20,8 +20,8 @@
   "author": "Chamupathi Gigara Hettige",
   "license": "Apache-2.0",
   "dependencies": {
-    "@actions/cache": "^3.1.4",
-    "@actions/core": "^1.10.0"
+    "@actions/cache": "^4.0.3",
+    "@actions/core": "^1.11.1"
   },
   "devDependencies": {
     "@microsoft/rush-lib": "^5.93.1",

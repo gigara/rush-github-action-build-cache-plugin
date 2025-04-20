@@ -13,7 +13,7 @@ Please refer to the [official documentation](https://rushjs.io/pages/maintainer/
 {
   ---
   "dependencies": {
-    "@gigara/rush-github-action-build-cache-plugin": "^1.0.4"
+    "@gigara/rush-github-action-build-cache-plugin": "^1.1.1"
   }
   ---
 }
