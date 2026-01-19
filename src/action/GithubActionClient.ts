@@ -19,7 +19,7 @@
 
 import { CacheProvider } from "./AbstractCacheProvider";
 import { join } from 'path';
-import { error, info, notice } from "@actions/core";
+import { error, notice } from "@actions/core";
 import { uploadCache } from "./uploadCache";
 import { downloadCache } from "./downloadCache";
 const fs = require('fs');
