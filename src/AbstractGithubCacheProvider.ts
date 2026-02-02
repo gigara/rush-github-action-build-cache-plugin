@@ -18,7 +18,7 @@
  */
 
 import { RushConfiguration } from "@microsoft/rush-lib";
-import { ITerminal } from "@rushstack/node-core-library";
+import { ITerminal } from "@rushstack/terminal";
 
 export abstract class AbstractGithubCacheProvider {
     rushConfiguration: RushConfiguration;

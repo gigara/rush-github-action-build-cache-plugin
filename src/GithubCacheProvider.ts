@@ -18,7 +18,7 @@
  */
 
 import { ICloudBuildCacheProvider } from "@microsoft/rush-lib";
-import { ITerminal } from "@rushstack/node-core-library";
+import { ITerminal } from "@rushstack/terminal";
 import { AbstractGithubCacheProvider } from "./AbstractGithubCacheProvider";
 import { GithubActionClient } from "./action/GithubActionClient";
 
