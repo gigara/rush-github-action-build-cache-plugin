@@ -19,9 +19,20 @@
 
 import { CacheProvider } from "./AbstractCacheProvider";
 import { join } from 'path';
-import { error, notice } from "@actions/core";
 import { uploadCache } from "./uploadCache";
 import { downloadCache } from "./downloadCache";
+let notice: (m: string)=>void;
+let error: (m: string)=>void;
+
+if (process.env.GITHUB_ACTIONS === 'true') {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const core = require('@actions/core');
+  notice = core.notice;
+  error = core.error;
+} else {
+  notice = (m: string) => console.log(m);
+  error = (m: string) => console.error(m);
+}
 const fs = require('fs');
 
 const BUILD_CACHE_FOLDER = "build-cache";

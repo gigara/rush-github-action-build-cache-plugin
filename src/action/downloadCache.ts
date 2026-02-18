@@ -17,8 +17,23 @@
  *
  */
 
-import { restoreCache } from "@actions/cache";
-import { error, info } from "@actions/core";
+let restoreCache: any;
+let info: (msg: string) => void;
+let error: (msg: string) => void;
+
+if (process.env.GITHUB_ACTIONS === 'true') {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const actionsCache = require('@actions/cache');
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const core = require('@actions/core');
+  restoreCache = actionsCache.restoreCache;
+  info = core.info;
+  error = core.error;
+} else {
+  restoreCache = async () => undefined;
+  info = (m: string) => console.log(m);
+  error = (m: string) => console.error(m);
+}
 
 export async function downloadCache(cacheFile: string, cacheId: string) {
     try {

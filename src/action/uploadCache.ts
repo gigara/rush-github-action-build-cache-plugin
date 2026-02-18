@@ -17,8 +17,25 @@
  *
  */
 
-import { saveCache } from "@actions/cache";
-import { info, error } from "@actions/core";
+let saveCache: any;
+let info: (msg: string) => void;
+let error: (msg: string) => void;
+
+if (process.env.GITHUB_ACTIONS === 'true') {
+  // Use actual GitHub Actions toolkit in GH environment
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const actionsCache = require('@actions/cache');
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const core = require('@actions/core');
+  saveCache = actionsCache.saveCache;
+  info = core.info;
+  error = core.error;
+} else {
+  // No-op fallbacks for local runs
+  saveCache = async () => undefined;
+  info = (m: string) => console.log(m);
+  error = (m: string) => console.error(m);
+}
 
 export async function uploadCache(cacheFile: string, cacheId: string): Promise<number> {
     try {
